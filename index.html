@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Memory Game</h1>
+            <p class="subtitle">Match all the pairs to win!</p>
+        </header>
+
+        <!-- Game Controls -->
+        <div class="controls">
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="timer">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Moves</span>
+                    <span class="stat-value" id="moves">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <div class="difficulty-selector">
+                    <button class="difficulty-btn active" data-level="easy">Easy</button>
+                    <button class="difficulty-btn" data-level="medium">Medium</button>
+                    <button class="difficulty-btn" data-level="hard">Hard</button>
+                </div>
+                <button class="control-btn" id="new-game">New Game</button>
+                <button class="control-btn" id="sound-toggle">🔊</button>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="game-container">
+            <div class="game-board" id="game-board">
+                <!-- Cards will be generated here -->
+            </div>
+        </div>
+
+        <!-- Best Scores -->
+        <div class="best-scores">
+            <h3>Best Scores</h3>
+            <div class="scores-grid">
+                <div class="score-item">
+                    <span>Easy</span>
+                    <span id="best-easy">--:--</span>
+                </div>
+                <div class="score-item">
+                    <span>Medium</span>
+                    <span id="best-medium">--:--</span>
+                </div>
+                <div class="score-item">
+                    <span>Hard</span>
+                    <span id="best-hard">--:--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div class="modal" id="win-modal">
+        <div class="modal-content">
+            <div class="win-icon">🎉</div>
+            <h2>Congratulations!</h2>
+            <p>You completed the game!</p>
+            <div class="final-stats">
+                <div class="final-stat">
+                    <span>Time: <strong id="final-time">00:00</strong></span>
+                </div>
+                <div class="final-stat">
+                    <span>Moves: <strong id="final-moves">0</strong></span>
+                </div>
+                <div class="final-stat">
+                    <span>Score: <strong id="final-score">0</strong></span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn primary" id="play-again">Play Again</button>
+                <button class="modal-btn secondary" id="close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
