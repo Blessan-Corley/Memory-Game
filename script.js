@@ -35,9 +35,29 @@ class MemoryGame {
     }
 
     init() {
+        this.displayDeveloperCredits();
         this.loadBestScores();
         this.bindEvents();
         this.newGame();
+    }
+
+    displayDeveloperCredits() {
+        console.log('%c┌────────────────────────────────────────────┐', 'color: #667eea; font-size: 14px;');
+        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
+        console.log('%c│        Welcome to Memory Game!            │', 'color: #764ba2; font-size: 16px; font-weight: bold;');
+        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
+        console.log('%c│    Designed & Developed by Blessan Corley  │', 'color: #f093fb; font-size: 14px; font-weight: 600;');
+        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
+        console.log('%c│           Technologies Used:               │', 'color: #a8edea; font-size: 14px; font-weight: 500;');
+        console.log('%c│           • Vanilla JavaScript            │', 'color: #fed6e3; font-size: 12px;');
+        console.log('%c│           • CSS3 Animations               │', 'color: #fed6e3; font-size: 12px;');
+        console.log('%c│           • HTML5 Semantic Elements       │', 'color: #fed6e3; font-size: 12px;');
+        console.log('%c│           • Web Audio API                 │', 'color: #fed6e3; font-size: 12px;');
+        console.log('%c│           • Local Storage API             │', 'color: #fed6e3; font-size: 12px;');
+        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
+        console.log('%c│           Enjoy the Game!                  │', 'color: #ffecd2; font-size: 14px; font-weight: 500;');
+        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
+        console.log('%c└────────────────────────────────────────────┘', 'color: #667eea; font-size: 14px;');
     }
 
     bindEvents() {
