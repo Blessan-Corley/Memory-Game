@@ -6,7 +6,7 @@
 class MemoryGame {
     constructor() {
         this.currentLevel = 'easy';
-        this.gameState = 'ready'; // ready, playing, finished
+        this.gameState = 'ready'; 
         this.cards = [];
         this.flippedCards = [];
         this.matchedPairs = 0;
@@ -16,14 +16,14 @@ class MemoryGame {
         this.gameTimer = null;
         this.soundEnabled = true;
         
-        // Game configurations
+        
         this.levels = {
             easy: { size: 4, pairs: 8 },
             medium: { size: 6, pairs: 18 },
             hard: { size: 8, pairs: 32 }
         };
         
-        // Card symbols (emojis for simplicity)
+        
         this.symbols = [
             '🎯', '🎲', '🎪', '🎨', '🎭', '🎺', '🎸', '🎹',
             '🚀', '🛸', '🌟', '⭐', '🌙', '☀️', '🌈', '⚡',
@@ -48,20 +48,13 @@ class MemoryGame {
         console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
         console.log('%c│    Designed & Developed by Blessan Corley  │', 'color: #f093fb; font-size: 14px; font-weight: 600;');
         console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
-        console.log('%c│           Technologies Used:               │', 'color: #a8edea; font-size: 14px; font-weight: 500;');
-        console.log('%c│           • Vanilla JavaScript            │', 'color: #fed6e3; font-size: 12px;');
-        console.log('%c│           • CSS3 Animations               │', 'color: #fed6e3; font-size: 12px;');
-        console.log('%c│           • HTML5 Semantic Elements       │', 'color: #fed6e3; font-size: 12px;');
-        console.log('%c│           • Web Audio API                 │', 'color: #fed6e3; font-size: 12px;');
-        console.log('%c│           • Local Storage API             │', 'color: #fed6e3; font-size: 12px;');
-        console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
         console.log('%c│           Enjoy the Game!                  │', 'color: #ffecd2; font-size: 14px; font-weight: 500;');
         console.log('%c│                                            │', 'color: #667eea; font-size: 14px;');
         console.log('%c└────────────────────────────────────────────┘', 'color: #667eea; font-size: 14px;');
     }
 
     bindEvents() {
-        // Difficulty buttons
+        
         document.querySelectorAll('.difficulty-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
@@ -71,7 +64,7 @@ class MemoryGame {
             });
         });
 
-        // Control buttons
+        
         document.getElementById('new-game').addEventListener('click', () => {
             this.newGame();
         });
@@ -80,7 +73,7 @@ class MemoryGame {
             this.toggleSound();
         });
 
-        // Modal buttons
+        
         document.getElementById('play-again').addEventListener('click', () => {
             this.hideModal();
             this.newGame();
@@ -90,7 +83,7 @@ class MemoryGame {
             this.hideModal();
         });
 
-        // Click outside modal to close
+        
         document.getElementById('win-modal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) {
                 this.hideModal();
@@ -169,12 +162,12 @@ class MemoryGame {
         
         if (card.isFlipped || card.isMatched) return;
 
-        // Start timer on first move
+        
         if (this.gameState === 'ready') {
             this.startGame();
         }
 
-        // Flip the card
+        
         card.isFlipped = true;
         cardElement.classList.add('flipped');
         this.flippedCards.push(card);
@@ -196,7 +189,7 @@ class MemoryGame {
         const card2Element = document.querySelector(`[data-card-id="${card2.id}"]`);
 
         if (card1.symbol === card2.symbol) {
-            // Match found!
+            
             card1.isMatched = true;
             card2.isMatched = true;
             card1Element.classList.add('matched');
@@ -206,12 +199,12 @@ class MemoryGame {
             this.score += this.calculateScore();
             this.playSound('match');
             
-            // Check if game is complete
+            
             if (this.matchedPairs === this.levels[this.currentLevel].pairs) {
                 this.gameComplete();
             }
         } else {
-            // No match
+            
             setTimeout(() => {
                 card1.isFlipped = false;
                 card2.isFlipped = false;
@@ -256,17 +249,17 @@ class MemoryGame {
     }
 
     updateDisplay() {
-        // Timer
+        
         const elapsed = this.getElapsedTime();
         const minutes = Math.floor(elapsed / 60);
         const seconds = elapsed % 60;
         document.getElementById('timer').textContent = 
             `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         
-        // Moves
+        
         document.getElementById('moves').textContent = this.moves;
         
-        // Score
+        
         document.getElementById('score').textContent = this.score;
     }
 
@@ -337,7 +330,7 @@ class MemoryGame {
     playSound(type) {
         if (!this.soundEnabled) return;
 
-        // Create simple audio feedback using Web Audio API
+        
         try {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const oscillator = audioContext.createOscillator();
@@ -346,7 +339,7 @@ class MemoryGame {
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
 
-            // Different frequencies for different sounds
+            
             const frequencies = {
                 flip: 800,
                 match: 1200,
@@ -356,7 +349,7 @@ class MemoryGame {
             oscillator.frequency.setValueAtTime(frequencies[type] || 800, audioContext.currentTime);
             oscillator.type = 'sine';
 
-            // Envelope
+            
             gainNode.gain.setValueAtTime(0, audioContext.currentTime);
             gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
             gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
@@ -364,13 +357,13 @@ class MemoryGame {
             oscillator.start(audioContext.currentTime);
             oscillator.stop(audioContext.currentTime + 0.3);
         } catch (error) {
-            // Fallback - silent fail if Web Audio API is not supported
+            
             console.log('Audio not supported');
         }
     }
 }
 
-// Initialize the game when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     window.memoryGame = new MemoryGame();
 });
